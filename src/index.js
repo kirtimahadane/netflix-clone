@@ -1,17 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
+//globalStyles 
+import {GlobalStyles} from './global-styles'
+import { App } from './app';
+//firebase context
+import {FirebaseContext} from './context/firebase';
+const config={
+  apiKey: "AIzaSyBcnC6XRE-OBS8x_pQNBfpkAcXm5rEX5ko",
+  authDomain: "netflix-clone-tutorial-e4dd7.firebaseapp.com",
+  projectId: "netflix-clone-tutorial-e4dd7",
+  storageBucket: "netflix-clone-tutorial-e4dd7.appspot.com",
+  messagingSenderId: "67639899200",
+  appId: "1:67639899200:web:27322f9d43143aad14dba5"
+};
+const firebase=  window.firebase.initializeApp(config);
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+<>
+<FirebaseContext.Provider value={{firebase:window.firebase}}>
+<GlobalStyles/>
+<App />
+</FirebaseContext.Provider>
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+</>, document.getElementById("root"));

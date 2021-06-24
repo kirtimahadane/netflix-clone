@@ -4,7 +4,7 @@ export default function Profiles({children, ...restProps}){
   return <Container {...restProps}>{children}</Container>
 }
 Profiles.Title= function ProfilesTitle({children, ...restProps}){
-  return<Profiles.Title {...restProps}>{children}</Profiles.Title>
+  return<Title {...restProps}>{children}</Title>
 }
 Profiles.List= function ProfilesList({children, ...restProps}){
   return<List {...restProps}>{children}</List>

@@ -1,20 +1,31 @@
-import React, {useState} from 'react';
-
+import React, {useState, useContext} from 'react';
+import { useHistory } from 'react-router-dom';
+import {FirebaseContext} from '../context/firebase'; 
 import  * as ROUTES from '../constants/routes';
 import {Form} from '../components';
 import {HeaderContainer} from '../containers/header';
 import {FooterContainer} from '../containers/footer';
 export default function Signin(){
-  const [error, setError]= useState("");
+  const {history}= useHistory();
+  const {firebase}= useContext(FirebaseContext);
+  
   const[emailAddress, setEmailAddress]=useState("");
   const[password, setPassword]= useState("");
+  const [error, setError]= useState("");
   const isInValid= password ===''|| emailAddress ==='';
  
   const handleSignin=(e)=>{
     e.preventDefault();
-
-    //call in firebase to authenticate the user
-    //if there is error , populate the error state
+       firebase
+       .auth()
+       .signInWithEmailAndPasword(emailAddress, password)
+       .then(()=>{
+         setEmailAddress("");
+         setPassword("");
+         setError("");
+         history.push(ROUTES.BROWSE);
+       }) 
+       .catch((error)=>setError(error.message));
   }
   return(
     <>
@@ -32,7 +43,7 @@ export default function Signin(){
           type="password"
           placeholder="Enter Password"
           value={password}
-          onChange={({target})=>setEmailAddress(target.value)} 
+          onChange={({target})=>setPassword(target.value)} 
           autoComplete="off"        
           />
           <Form.Submit type="submit" disabled={isInValid}>

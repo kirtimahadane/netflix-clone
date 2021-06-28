@@ -58,3 +58,14 @@ margin-right:40px;
 }
 `;
 
+export const Group= styled.div`
+display:flex;
+align-items:center;
+`;
+export const Text= styled.p`
+color:white;
+font-size:22px;
+line-height:normal;
+text-shadow:2px 2px 4px rgba(0,0,0,0.45)
+`;
+

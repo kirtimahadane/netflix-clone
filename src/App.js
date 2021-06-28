@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Switch, Route }from 'react-router-dom';
 import *  as ROUTES from './constants/routes';
 //import Home from './pages/home';
 import {Home, Browse , Signin, Signup} from './pages';
-export function App(){
+export  function App(){
     return(
         <Router>
         <Switch>
